@@ -1,7 +1,6 @@
 package org.mission.tasks;
 
 import viking.api.Timing;
-import viking.api.banking.BankUtils;
 import viking.api.skills.woodcutting.enums.AxeType;
 import viking.framework.mission.Mission;
 import viking.framework.task.Task;
@@ -15,18 +14,26 @@ public class DepositItems extends Task {
         super(mission);
     }
 
-    @Override
     public boolean validate() {
-        return mission.inventory.isFull();
+        return inventory.isFull();
     }
 
-    @Override
     public void execute() {
-        if (mission.bank.isOpen()) {
-            if (mission.bank.depositAllExcept(AxeType.getItemIDs()))
-                Timing.waitCondition(() -> !mission.inventory.isFull(), 150, mission.random(2000, 2500));
+        if (bank.isOpen()) {
+            if (bank.depositAllExcept(AxeType.getItemIDs()))
+                Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500));
         } else {
-            if ()
+            if (bankUtils.isInBank()) {
+                try {
+                    if (bank.open())
+                        Timing.waitCondition(conditions.BANK_OPEN, 150, random(2000, 2500));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                if (walkUtils.walkToArea(bankUtils.getClosest()))
+                    Timing.waitCondition(() -> bankUtils.isInBank(), 150, random(2000, 2500));
+            }
         }
     }
 
