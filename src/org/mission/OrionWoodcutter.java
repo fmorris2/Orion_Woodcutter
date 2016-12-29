@@ -1,6 +1,11 @@
 package org.mission;
 
+import org.mission.tasks.ChopTree;
 import org.mission.tasks.DepositItems;
+import org.mission.tasks.WalkToTreeLocation;
+import org.mission.tasks.axe.EquipAxe;
+import org.mission.tasks.axe.GetAxe;
+import org.mission.tasks.axe.UpgradeAxe;
 import viking.framework.goal.GoalList;
 import viking.framework.goal.impl.InfiniteGoal;
 import viking.framework.mission.Mission;
@@ -48,12 +53,12 @@ public class OrionWoodcutter extends Mission {
     @Override
     public int execute() {
         TASK_MANAGER.loop(150, 200);
-        return 0;
+        return 150;
     }
 
     @Override
     public void onMissionStart() {
-        TASK_MANAGER.addTask(new DepositItems(this));
+        TASK_MANAGER.addTask(new DepositItems(this), new GetAxe(this), new UpgradeAxe(this), new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this));
     }
 
     @Override
