@@ -12,7 +12,7 @@ import java.util.Queue;
 /**
  * Created by Sphiinx on 12/27/2016.
  */
-@ScriptManifest(author = "Sphiinx", name = "Orion Woodcutter", info = "Chops", version = 0, logo = "")
+@ScriptManifest(author = "Sphiinx", name = "Orion Woodcutter", info = "Chops", version = 0.1, logo = "")
 public class OrionWcerScript_TEMP_FILE extends VikingScript {
 
 

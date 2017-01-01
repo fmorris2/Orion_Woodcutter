@@ -20,8 +20,8 @@ public class Vars {
 
     public boolean is_upgrading_axe;
 
-    public Location location = Location.WEST_VARROCK;
-    public TreeType tree_type = TreeType.NORMAL;
+    public Location location = Location.PORT_SARIM;
+    public TreeType tree_type = TreeType.WILLOW;
 
 }
 
