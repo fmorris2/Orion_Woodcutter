@@ -635,5 +635,14 @@ public enum ChoppingLocation {
     public TreeType[] getTreeTypes() {
         return TREE_TYPE;
     }
+    
+    public boolean containsTreeType(TreeType t)
+    {
+    	for(TreeType type : TREE_TYPE)
+    		if(type == t)
+    			return true;
+    	
+    	return false;
+    }
 
 }

@@ -1,5 +1,7 @@
 package org.mission;
 
+import org.mission.data.enums.ChoppingLocation;
+import org.mission.data.vars.Vars;
 import org.mission.tasks.ChopTree;
 import org.mission.tasks.DepositItems;
 import org.mission.tasks.WalkToTreeLocation;
@@ -70,10 +72,22 @@ public class OrionWoodcutter extends Mission implements CommandReceiver {
     @Override
     public void resetPaint() {
     }
+    
+    public void updateChoppingLoc(LogType type)
+    {
+    	orion_main.receiveCommand("getLoc:wc:free:"+type);
+    }
 
 	@Override
 	public void receiveCommand(String command)
 	{
+		String[] parts = command.split(":");
+		if(parts[0].equals("bestLoc"))
+		{
+			LogType log = LogType.valueOf(parts[1]);
+			ChoppingLocation bestLoc = ChoppingLocation.valueOf(parts[2]);
+			Vars.get().chopping_location = bestLoc;
+		}
 	}
 
 }
