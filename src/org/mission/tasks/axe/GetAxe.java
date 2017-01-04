@@ -21,7 +21,11 @@ public class GetAxe extends Task<OrionWoodcutter> {
     public boolean validate() {
         if (!client.isLoggedIn() || Vars.get().is_upgrading_axe)
             return false;
-
+        
+        script.log(this, false, "Equipment null: " + (equipment == null));
+        script.log(this, false, "woodcutting null: " + (woodcutting == null));
+        script.log(this, false, "equipment.getItems null: " + (equipment.getItems() == null));
+        script.log(this, false, "equipment.getItems length: " + equipment.getItems().length);
         return !equipment.isWearingItem(EquipmentSlot.WEAPON) && woodcutting.getBestUsableAxe(false) == null;
     }
 
