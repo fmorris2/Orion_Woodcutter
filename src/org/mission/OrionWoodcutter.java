@@ -67,7 +67,8 @@ public class OrionWoodcutter extends Mission implements CommandReceiver{
         return 150;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void onMissionStart() {
         updateTargetTree();
         updateChoppingLoc();
@@ -107,7 +108,6 @@ public class OrionWoodcutter extends Mission implements CommandReceiver{
 
     @Override
     public void onMessage(Message m) {
-    	script.log(this, false, "Intercepted message: " + m.getMessage());
         if (m.getMessage().contains("advanced a Woodcutting level") && updateTargetTree())
             updateChoppingLoc();
     }
