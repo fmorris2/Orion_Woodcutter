@@ -6,7 +6,7 @@ import viking.api.skills.woodcutting.enums.TreeType;
 /**
  * Created by Sphiinx on 12/28/2016.
  */
-public enum Location {
+public enum ChoppingLocation {
 
     VARROCK_WEST_1(new Area(new int[][]{
             {3171, 3424},
@@ -613,7 +613,7 @@ public enum Location {
     private final int CAPACITY;
     private final TreeType TREE_TYPE[];
 
-    Location(Area area, boolean members, int capacity, TreeType... tree_type) {
+    ChoppingLocation(Area area, boolean members, int capacity, TreeType... tree_type) {
         this.AREA = area;
         this.MEMBERS = members;
         this.CAPACITY = capacity;

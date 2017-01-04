@@ -21,14 +21,14 @@ public class WalkToTreeLocation extends Task<OrionWoodcutter> {
         if (Vars.get().is_upgrading_axe)
             return false;
 
-        final RS2Object TREE = objects.closest(Vars.get().location.getArea(), Vars.get().tree_type.getTreeName());
+        final RS2Object TREE = objects.closest(Vars.get().chopping_location.getArea(), Vars.get().tree_type.getTreeName());
         return TREE == null && !inventory.isFull() && woodcutting.getBestUsableAxe(false) != null;
     }
 
     @Override
     public void execute() {
-        if (walkUtils.walkToArea(Vars.get().location.getArea()))
-            Timing.waitCondition(() -> Vars.get().location.getArea().contains(myPlayer()), 150, random(2000, 2500));
+        if (walkUtils.walkToArea(Vars.get().chopping_location.getArea()))
+            Timing.waitCondition(() -> Vars.get().chopping_location.getArea().contains(myPlayer()), 150, random(2000, 2500));
     }
 
     @Override

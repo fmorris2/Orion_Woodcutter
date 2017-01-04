@@ -21,13 +21,13 @@ public class ChopTree extends Task<OrionWoodcutter> {
         if (Vars.get().is_upgrading_axe)
             return false;
 
-        final RS2Object TREE = objects.closest(Vars.get().location.getArea(), Vars.get().tree_type.getTreeName());
+        final RS2Object TREE = objects.closest(Vars.get().chopping_location.getArea(), Vars.get().tree_type.getTreeName());
         return TREE != null && !inventory.isFull() && (inventory.getAmount(AxeType.getItemIDs()) > 0 || equipment.getAmount(AxeType.getItemIDs()) > 0);
     }
 
     @Override
     public void execute() {
-        final RS2Object TREE = objects.closest(Vars.get().location.getArea(), Vars.get().tree_type.getTreeName());
+        final RS2Object TREE = objects.closest(Vars.get().chopping_location.getArea(), Vars.get().tree_type.getTreeName());
         if (TREE == null)
             return;
 

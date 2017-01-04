@@ -1,6 +1,6 @@
 package org.mission.data.vars;
 
-import org.mission.data.enums.Location;
+import org.mission.data.enums.ChoppingLocation;
 import viking.api.skills.woodcutting.enums.TreeType;
 
 /**
@@ -20,7 +20,7 @@ public class Vars {
 
     public boolean is_upgrading_axe;
 
-    public Location location = Location.PORT_SARIM_NORTH_4;
+    public ChoppingLocation chopping_location = ChoppingLocation.PORT_SARIM_NORTH_4;
     public TreeType tree_type = TreeType.WILLOW;
 
 }

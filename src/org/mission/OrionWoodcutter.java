@@ -6,18 +6,24 @@ import org.mission.tasks.WalkToTreeLocation;
 import org.mission.tasks.axe.EquipAxe;
 import org.mission.tasks.axe.GetAxe;
 import org.mission.tasks.axe.UpgradeAxe;
+import viking.api.skills.woodcutting.enums.LogType;
+import viking.framework.command.CommandReceiver;
+import viking.framework.command.CommandSender;
 import viking.framework.goal.GoalList;
 import viking.framework.goal.impl.InfiniteGoal;
 import viking.framework.mission.Mission;
 import viking.framework.script.VikingScript;
 import viking.framework.task.TaskManager;
 
-public class OrionWoodcutter extends Mission {
+public class OrionWoodcutter extends Mission implements CommandSender {
 
     private final TaskManager<OrionWoodcutter> TASK_MANAGER = new TaskManager<>(this);
 
-    public OrionWoodcutter(VikingScript script) {
+    private CommandReceiver orion_main;
+
+    OrionWoodcutter(VikingScript script, LogType target_type) {
         super(script);
+        orion_main = script instanceof CommandReceiver ? (CommandReceiver)script : null;
     }
 
     @Override
@@ -63,6 +69,10 @@ public class OrionWoodcutter extends Mission {
 
     @Override
     public void resetPaint() {
+    }
+
+    @Override
+    public void sendCommand(String command) {
     }
 
 }
