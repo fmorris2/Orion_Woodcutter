@@ -1,15 +1,14 @@
 package org.mission;
 
 import org.mission.data.enums.ChoppingLocation;
-import org.mission.data.vars.Vars;
+import org.mission.data.vars.OW_Vars;
 import org.mission.tasks.ChopTree;
-import org.mission.tasks.DepositItems;
+import org.mission.tasks.OW_DepositItems;
 import org.mission.tasks.WalkToTreeLocation;
 import org.mission.tasks.axe.EquipAxe;
 import org.mission.tasks.axe.GetAxe;
 import org.mission.tasks.axe.UpgradeAxe;
 import org.osbot.rs07.api.ui.Message;
-import org.osbot.rs07.listener.MessageListener;
 
 import viking.api.skills.woodcutting.enums.TreeType;
 import viking.framework.command.CommandReceiver;
@@ -19,7 +18,7 @@ import viking.framework.mission.Mission;
 import viking.framework.script.VikingScript;
 import viking.framework.task.TaskManager;
 
-public class OrionWoodcutter extends Mission implements CommandReceiver, MessageListener {
+public class OrionWoodcutter extends Mission implements CommandReceiver{
 
     private final TaskManager<OrionWoodcutter> TASK_MANAGER = new TaskManager<>(this);
 
@@ -44,7 +43,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
 
     @Override
     public String getCurrentTaskName() {
-        return null;
+        return TASK_MANAGER.getStatus();
     }
 
     @Override
@@ -64,17 +63,17 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
 
     @Override
     public int execute() {
-        TASK_MANAGER.loop(150, 200);
+        TASK_MANAGER.loop();
         return 150;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void onMissionStart() {
         updateTargetTree();
         updateChoppingLoc();
-
-        bot.addMessageListener(this);
-        TASK_MANAGER.addTask(new DepositItems(this), new GetAxe(this), new UpgradeAxe(this), new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this));
+        
+        TASK_MANAGER.addTask(new OW_DepositItems(this), new GetAxe(this), new UpgradeAxe(this), new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this));
     }
 
     @Override
@@ -82,17 +81,18 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
     }
 
     private boolean updateTargetTree() {
-        TreeType old = Vars.get().tree_type;
-        Vars.get().tree_type = woodcutting.getBestChoppableTreeType(false);
-        if (Vars.get().tree_type.ordinal() > target.ordinal())
-            Vars.get().tree_type = target;
+    	script.log(this, false, "Updating target tree");
+        TreeType old = OW_Vars.get().tree_type;
+        OW_Vars.get().tree_type = woodcutting.getBestChoppableTreeType(false);
+        if (OW_Vars.get().tree_type.ordinal() > target.ordinal())
+            OW_Vars.get().tree_type = target;
 
-        return old != Vars.get().tree_type;
+        return old != OW_Vars.get().tree_type;
     }
 
     public void updateChoppingLoc() {
         script.log(this, false, "Updating chopping loc....");
-        orion_main.receiveCommand("getLoc:wc:free:" + Vars.get().tree_type);
+        orion_main.receiveCommand("getLoc:wc:free:" + OW_Vars.get().tree_type);
     }
 
     @Override
@@ -101,13 +101,13 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
         String[] parts = command.split(":");
         if (parts[0].equals("bestLoc")) {
             ChoppingLocation bestLoc = ChoppingLocation.valueOf(parts[1]);
-            Vars.get().chopping_location = bestLoc;
+            OW_Vars.get().chopping_location = bestLoc;
             script.log(this, false, "New best location: " + bestLoc);
         }
     }
 
     @Override
-    public void onMessage(Message m) throws InterruptedException {
+    public void onMessage(Message m) {
         if (m.getMessage().contains("advanced a Woodcutting level") && updateTargetTree())
             updateChoppingLoc();
     }
