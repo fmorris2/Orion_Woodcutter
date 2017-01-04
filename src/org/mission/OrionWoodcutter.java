@@ -72,8 +72,8 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
     public void onMissionStart() {
         updateTargetTree();
         updateChoppingLoc();
-
-        script.bot.addMessageListener(this);
+        
+        bot.addMessageListener(this);
         TASK_MANAGER.addTask(new OW_DepositItems(this), new GetAxe(this), new UpgradeAxe(this), new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this));
     }
 
@@ -108,7 +108,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
     }
 
     @Override
-    public void onMessage(Message m) throws InterruptedException {
+    public void onMessage(Message m) {
     	script.log(this, false, "Intercepted message: " + m.getMessage());
         if (m.getMessage().contains("advanced a Woodcutting level") && updateTargetTree())
             updateChoppingLoc();
