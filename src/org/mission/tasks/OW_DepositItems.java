@@ -9,9 +9,9 @@ import viking.framework.task.Task;
 /**
  * Created by Sphiinx on 12/27/2016.
  */
-public class DepositItems extends Task<OrionWoodcutter> {
+public class OW_DepositItems extends Task<OrionWoodcutter> {
 
-    public DepositItems(OrionWoodcutter mission) {
+    public OW_DepositItems(OrionWoodcutter mission) {
         super(mission);
     }
 

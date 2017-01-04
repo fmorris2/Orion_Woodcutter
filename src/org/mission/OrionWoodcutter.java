@@ -3,7 +3,7 @@ package org.mission;
 import org.mission.data.enums.ChoppingLocation;
 import org.mission.data.vars.Vars;
 import org.mission.tasks.ChopTree;
-import org.mission.tasks.DepositItems;
+import org.mission.tasks.OW_DepositItems;
 import org.mission.tasks.WalkToTreeLocation;
 import org.mission.tasks.axe.EquipAxe;
 import org.mission.tasks.axe.GetAxe;
@@ -74,7 +74,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
         updateChoppingLoc();
 
         bot.addMessageListener(this);
-        TASK_MANAGER.addTask(new DepositItems(this), new GetAxe(this), new UpgradeAxe(this), new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this));
+        TASK_MANAGER.addTask(new OW_DepositItems(this), new GetAxe(this), new UpgradeAxe(this), new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this));
     }
 
     @Override
