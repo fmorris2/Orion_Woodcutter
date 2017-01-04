@@ -9,7 +9,6 @@ import org.mission.tasks.axe.EquipAxe;
 import org.mission.tasks.axe.GetAxe;
 import org.mission.tasks.axe.UpgradeAxe;
 import org.osbot.rs07.api.ui.Message;
-import org.osbot.rs07.listener.MessageListener;
 
 import viking.api.skills.woodcutting.enums.TreeType;
 import viking.framework.command.CommandReceiver;
@@ -19,7 +18,7 @@ import viking.framework.mission.Mission;
 import viking.framework.script.VikingScript;
 import viking.framework.task.TaskManager;
 
-public class OrionWoodcutter extends Mission implements CommandReceiver, MessageListener {
+public class OrionWoodcutter extends Mission implements CommandReceiver{
 
     private final TaskManager<OrionWoodcutter> TASK_MANAGER = new TaskManager<>(this);
 
@@ -73,7 +72,6 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
         updateTargetTree();
         updateChoppingLoc();
         
-        bot.addMessageListener(this);
         TASK_MANAGER.addTask(new OW_DepositItems(this), new GetAxe(this), new UpgradeAxe(this), new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this));
     }
 
