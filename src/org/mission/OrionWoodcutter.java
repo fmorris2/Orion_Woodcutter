@@ -82,6 +82,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
     }
 
     private boolean updateTargetTree() {
+    	script.log(this, false, "Updating target tree");
         TreeType old = Vars.get().tree_type;
         Vars.get().tree_type = woodcutting.getBestChoppableTreeType(false);
         if (Vars.get().tree_type.ordinal() > target.ordinal())
@@ -108,6 +109,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
 
     @Override
     public void onMessage(Message m) throws InterruptedException {
+    	script.log(this, false, "Intercepted message: " + m.getMessage());
         if (m.getMessage().contains("advanced a Woodcutting level") && updateTargetTree())
             updateChoppingLoc();
     }
