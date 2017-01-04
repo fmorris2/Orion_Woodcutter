@@ -20,8 +20,8 @@ public class Vars {
 
     public boolean is_upgrading_axe;
 
-    public ChoppingLocation chopping_location = ChoppingLocation.W_PORT_SARIM_NORTH_1;
-    public TreeType tree_type = TreeType.WILLOW;
+    public ChoppingLocation chopping_location;
+    public TreeType tree_type;
 
 }
 

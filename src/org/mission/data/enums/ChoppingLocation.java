@@ -643,5 +643,4 @@ public enum ChoppingLocation {
 
         return false;
     }
-
 }
