@@ -64,7 +64,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
 
     @Override
     public int execute() {
-        TASK_MANAGER.loop(150, 200);
+        TASK_MANAGER.loop();
         return 150;
     }
 
