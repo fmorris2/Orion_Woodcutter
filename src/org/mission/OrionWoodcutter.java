@@ -21,7 +21,7 @@ public class OrionWoodcutter extends Mission implements CommandSender {
 
     private CommandReceiver orion_main;
 
-    OrionWoodcutter(VikingScript script, LogType target_type) {
+    public OrionWoodcutter(VikingScript script, LogType target_type) {
         super(script);
         orion_main = script instanceof CommandReceiver ? (CommandReceiver)script : null;
     }
