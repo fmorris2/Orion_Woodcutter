@@ -1,7 +1,8 @@
 package org.mission.tasks.axe;
 
 import org.mission.OrionWoodcutter;
-import org.mission.data.vars.Vars;
+import org.mission.data.vars.OW_Vars;
+
 import viking.api.Timing;
 import viking.api.skills.woodcutting.enums.AxeType;
 
@@ -19,7 +20,7 @@ public class UpgradeAxe extends GetAxe {
 
     @Override
     public boolean validate() {
-        if (!client.isLoggedIn() || Vars.get().is_upgrading_axe)
+        if (!client.isLoggedIn() || OW_Vars.get().is_upgrading_axe)
             return false;
 
         if (!bank.isOpen())
@@ -34,7 +35,7 @@ public class UpgradeAxe extends GetAxe {
 
     @Override
     public void execute() {
-        Vars.get().is_upgrading_axe = true;
+        OW_Vars.get().is_upgrading_axe = true;
 
         super.execute();
 

@@ -1,9 +1,10 @@
 package org.mission.tasks.axe;
 
 import org.mission.OrionWoodcutter;
-import org.mission.data.vars.Vars;
+import org.mission.data.vars.OW_Vars;
 import org.osbot.rs07.api.model.Item;
 import org.osbot.rs07.api.ui.EquipmentSlot;
+
 import viking.api.Timing;
 import viking.api.skills.woodcutting.enums.AxeType;
 import viking.framework.task.Task;
@@ -19,7 +20,7 @@ public class GetAxe extends Task<OrionWoodcutter> {
 
     @Override
     public boolean validate() {
-        if (!client.isLoggedIn() || Vars.get().is_upgrading_axe)
+        if (!client.isLoggedIn() || OW_Vars.get().is_upgrading_axe)
             return false;
         
         return !equipment.isWearingItem(EquipmentSlot.WEAPON) && woodcutting.getBestUsableAxe(false) == null;
@@ -40,7 +41,7 @@ public class GetAxe extends Task<OrionWoodcutter> {
             if (bank.withdraw(best_usable_axe.getItemID(), 1))
                 if (Timing.waitCondition(() -> inventory.getItems().length > 0, 150, random(2000, 2500)))
                     if (woodcutting.getBestUsableAxe(false) == best_usable_axe)
-                        Vars.get().is_upgrading_axe = false;
+                        OW_Vars.get().is_upgrading_axe = false;
         } else {
             if (bankUtils.isInBank()) {
                 if (bankUtils.open())

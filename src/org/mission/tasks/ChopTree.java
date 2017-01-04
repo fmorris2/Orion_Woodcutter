@@ -1,8 +1,9 @@
 package org.mission.tasks;
 
 import org.mission.OrionWoodcutter;
-import org.mission.data.vars.Vars;
+import org.mission.data.vars.OW_Vars;
 import org.osbot.rs07.api.model.RS2Object;
+
 import viking.api.Timing;
 import viking.api.skills.woodcutting.enums.AxeType;
 import viking.framework.task.Task;
@@ -18,16 +19,16 @@ public class ChopTree extends Task<OrionWoodcutter> {
 
     @Override
     public boolean validate() {
-        if (Vars.get().is_upgrading_axe)
+        if (OW_Vars.get().is_upgrading_axe)
             return false;
 
-        final RS2Object TREE = objects.closest(Vars.get().chopping_location.getArea(), Vars.get().tree_type.getTreeName());
+        final RS2Object TREE = objects.closest(OW_Vars.get().chopping_location.getArea(), OW_Vars.get().tree_type.getTreeName());
         return TREE != null && !inventory.isFull() && (inventory.getAmount(AxeType.getItemIDs()) > 0 || equipment.getAmount(AxeType.getItemIDs()) > 0);
     }
 
     @Override
     public void execute() {
-        final RS2Object TREE = objects.closest(Vars.get().chopping_location.getArea(), Vars.get().tree_type.getTreeName());
+        final RS2Object TREE = objects.closest(OW_Vars.get().chopping_location.getArea(), OW_Vars.get().tree_type.getTreeName());
         if (TREE == null)
             return;
 
@@ -45,7 +46,7 @@ public class ChopTree extends Task<OrionWoodcutter> {
 
     @Override
     public String toString() {
-        return "Chopping " + Vars.get().tree_type;
+        return "Chopping " + OW_Vars.get().tree_type;
     }
 
 }

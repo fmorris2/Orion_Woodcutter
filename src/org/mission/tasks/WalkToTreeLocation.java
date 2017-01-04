@@ -1,8 +1,9 @@
 package org.mission.tasks;
 
 import org.mission.OrionWoodcutter;
-import org.mission.data.vars.Vars;
+import org.mission.data.vars.OW_Vars;
 import org.osbot.rs07.api.model.RS2Object;
+
 import viking.api.Timing;
 import viking.framework.task.Task;
 
@@ -18,20 +19,20 @@ public class WalkToTreeLocation extends Task<OrionWoodcutter> {
 
     @Override
     public boolean validate() {
-        if (Vars.get().is_upgrading_axe)
+        if (OW_Vars.get().is_upgrading_axe)
             return false;
 
-        final RS2Object TREE = objects.closest(Vars.get().chopping_location.getArea(), Vars.get().tree_type.getTreeName());
+        final RS2Object TREE = objects.closest(OW_Vars.get().chopping_location.getArea(), OW_Vars.get().tree_type.getTreeName());
         return TREE == null && !inventory.isFull() && woodcutting.getBestUsableAxe(false) != null;
     }
 
     @Override
     public void execute() {
-        if (walkUtils.walkToArea(Vars.get().chopping_location.getArea(), () -> {
-            final RS2Object TREE = objects.closest(Vars.get().chopping_location.getArea(), Vars.get().tree_type.getTreeName());
+        if (walkUtils.walkToArea(OW_Vars.get().chopping_location.getArea(), () -> {
+            final RS2Object TREE = objects.closest(OW_Vars.get().chopping_location.getArea(), OW_Vars.get().tree_type.getTreeName());
             return TREE != null && TREE.isVisible();
         })) {
-            Timing.waitCondition(() -> Vars.get().chopping_location.getArea().contains(myPlayer()), 150, random(2000, 2500));
+            Timing.waitCondition(() -> OW_Vars.get().chopping_location.getArea().contains(myPlayer()), 150, random(2000, 2500));
         }
     }
 

@@ -1,7 +1,7 @@
 package org.mission;
 
 import org.mission.data.enums.ChoppingLocation;
-import org.mission.data.vars.Vars;
+import org.mission.data.vars.OW_Vars;
 import org.mission.tasks.ChopTree;
 import org.mission.tasks.OW_DepositItems;
 import org.mission.tasks.WalkToTreeLocation;
@@ -83,17 +83,17 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
 
     private boolean updateTargetTree() {
     	script.log(this, false, "Updating target tree");
-        TreeType old = Vars.get().tree_type;
-        Vars.get().tree_type = woodcutting.getBestChoppableTreeType(false);
-        if (Vars.get().tree_type.ordinal() > target.ordinal())
-            Vars.get().tree_type = target;
+        TreeType old = OW_Vars.get().tree_type;
+        OW_Vars.get().tree_type = woodcutting.getBestChoppableTreeType(false);
+        if (OW_Vars.get().tree_type.ordinal() > target.ordinal())
+            OW_Vars.get().tree_type = target;
 
-        return old != Vars.get().tree_type;
+        return old != OW_Vars.get().tree_type;
     }
 
     public void updateChoppingLoc() {
         script.log(this, false, "Updating chopping loc....");
-        orion_main.receiveCommand("getLoc:wc:free:" + Vars.get().tree_type);
+        orion_main.receiveCommand("getLoc:wc:free:" + OW_Vars.get().tree_type);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
         String[] parts = command.split(":");
         if (parts[0].equals("bestLoc")) {
             ChoppingLocation bestLoc = ChoppingLocation.valueOf(parts[1]);
-            Vars.get().chopping_location = bestLoc;
+            OW_Vars.get().chopping_location = bestLoc;
             script.log(this, false, "New best location: " + bestLoc);
         }
     }

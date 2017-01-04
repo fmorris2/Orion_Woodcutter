@@ -6,12 +6,12 @@ import viking.api.skills.woodcutting.enums.TreeType;
 /**
  * Created by Sphiinx on 12/28/2016.
  */
-public class Vars {
+public class OW_Vars {
 
-    public static Vars vars;
+    public static OW_Vars vars;
 
-    public static Vars get() {
-        return vars == null ? vars = new Vars() : vars;
+    public static OW_Vars get() {
+        return vars == null ? vars = new OW_Vars() : vars;
     }
 
     public static void reset() {
