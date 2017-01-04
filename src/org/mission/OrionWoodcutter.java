@@ -8,14 +8,13 @@ import org.mission.tasks.axe.GetAxe;
 import org.mission.tasks.axe.UpgradeAxe;
 import viking.api.skills.woodcutting.enums.LogType;
 import viking.framework.command.CommandReceiver;
-import viking.framework.command.CommandSender;
 import viking.framework.goal.GoalList;
 import viking.framework.goal.impl.InfiniteGoal;
 import viking.framework.mission.Mission;
 import viking.framework.script.VikingScript;
 import viking.framework.task.TaskManager;
 
-public class OrionWoodcutter extends Mission implements CommandSender {
+public class OrionWoodcutter extends Mission implements CommandReceiver {
 
     private final TaskManager<OrionWoodcutter> TASK_MANAGER = new TaskManager<>(this);
 
@@ -72,7 +71,8 @@ public class OrionWoodcutter extends Mission implements CommandSender {
     }
 
     @Override
-    public void sendCommand(String command) {
+    public void receiveCommand(String command) {
+
     }
 
 }

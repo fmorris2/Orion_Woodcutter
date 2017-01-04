@@ -5,7 +5,6 @@ import viking.framework.mission.Mission;
 import viking.framework.paint.VikingPaint;
 import viking.framework.script.VikingScript;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
