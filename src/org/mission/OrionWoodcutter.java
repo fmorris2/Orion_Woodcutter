@@ -73,7 +73,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
         updateTargetTree();
         updateChoppingLoc();
 
-        bot.addMessageListener(this);
+        script.bot.addMessageListener(this);
         TASK_MANAGER.addTask(new OW_DepositItems(this), new GetAxe(this), new UpgradeAxe(this), new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this));
     }
 
