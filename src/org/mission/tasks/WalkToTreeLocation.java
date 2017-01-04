@@ -27,8 +27,12 @@ public class WalkToTreeLocation extends Task<OrionWoodcutter> {
 
     @Override
     public void execute() {
-        if (walkUtils.walkToArea(Vars.get().chopping_location.getArea()))
+        if (walkUtils.walkToArea(Vars.get().chopping_location.getArea(), () -> {
+            final RS2Object TREE = objects.closest(Vars.get().chopping_location.getArea(), Vars.get().tree_type.getTreeName());
+            return TREE != null && TREE.isVisible();
+        })) {
             Timing.waitCondition(() -> Vars.get().chopping_location.getArea().contains(myPlayer()), 150, random(2000, 2500));
+        }
     }
 
     @Override
