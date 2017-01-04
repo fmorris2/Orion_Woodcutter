@@ -216,20 +216,20 @@ public enum ChoppingLocation {
             {3041, 3342},
             {3034, 3341}
     }), false, 5, TreeType.NORMAL, TreeType.OAK),
-    CRAFTING_GUILD_1(new Area(new int[][]{
+    W_CRAFTING_GUILD_1(new Area(new int[][]{
             {2928, 3319},
             {2926, 3290},
             {2912, 3291},
             {2908, 3304},
             {2909, 3319}
     }), false, 10, TreeType.NORMAL, TreeType.OAK, TreeType.WILLOW),
-    CRAFTING_GUILD_2(new Area(new int[][]{
+    W_CRAFTING_GUILD_2(new Area(new int[][]{
             {2927, 3317},
             {2927, 3292},
             {2944, 3288},
             {2942, 3309}
     }), false, 8, TreeType.NORMAL, TreeType.OAK),
-    CRAFTING_GUILD_3(new Area(new int[][]{
+    W_CRAFTING_GUILD_3(new Area(new int[][]{
             {2947, 3278},
             {2946, 3259},
             {2941, 3256},
@@ -237,20 +237,20 @@ public enum ChoppingLocation {
             {2924, 3263},
             {2935, 3265}
     }), false, 8, TreeType.NORMAL, TreeType.OAK),
-    RIMMINGTON_NORTH_1(new Area(new int[][]{
+    W_RIMMINGTON_NORTH_1(new Area(new int[][]{
             {2944, 3236},
             {2931, 3215},
             {2924, 3216},
             {2917, 3238}
     }), false, 14, TreeType.NORMAL, TreeType.OAK, TreeType.YEW),
-    RIMMINGTON_NORTH_2(new Area(new int[][]{
+    W_RIMMINGTON_NORTH_2(new Area(new int[][]{
             {2942, 3215},
             {2957, 3221},
             {2956, 3241},
             {2945, 3238},
             {2939, 3224}
     }), false, 10, TreeType.NORMAL, TreeType.OAK),
-    RIMMINGTON_NORTH_3(new Area(new int[][]{
+    W_RIMMINGTON_NORTH_3(new Area(new int[][]{
             {2969, 3228},
             {2965, 3221},
             {2956, 3224},
@@ -259,7 +259,7 @@ public enum ChoppingLocation {
             {2966, 3248},
             {2964, 3234}
     }), false, 8, TreeType.NORMAL, TreeType.OAK),
-    RIMMINGTON_SOUTH_1(new Area(new int[][]{
+    W_RIMMINGTON_SOUTH_1(new Area(new int[][]{
             {2978, 3212},
             {2979, 3193},
             {2968, 3187},
@@ -269,27 +269,27 @@ public enum ChoppingLocation {
             {2972, 3207},
             {2971, 3211}
     }), false, 14, TreeType.NORMAL, TreeType.OAK, TreeType.WILLOW),
-    RIMMINGTON_SOUTH_2(new Area(new int[][]{
+    W_RIMMINGTON_SOUTH_2(new Area(new int[][]{
             {2977, 3211},
             {2977, 3196},
             {3003, 3199},
             {3003, 3206},
             {2986, 3211}
     }), false, 8, TreeType.NORMAL, TreeType.OAK),
-    RIMMINGTON_SOUTH_3(new Area(new int[][]{
+    W_RIMMINGTON_SOUTH_3(new Area(new int[][]{
             {2981, 3197},
             {2998, 3198},
             {2992, 3180},
             {2984, 3182}
     }), false, 14, TreeType.NORMAL, TreeType.WILLOW),
-    MUDSKIPPER_1(new Area(new int[][]{
+    W_MUDSKIPPER_1(new Area(new int[][]{
             {3015, 3177},
             {3015, 3158},
             {3004, 3153},
             {2993, 3165},
             {2992, 3171}
     }), false, 14, TreeType.NORMAL, TreeType.OAK, TreeType.WILLOW),
-    MUDSKIPPER_2(new Area(new int[][]{
+    W_MUDSKIPPER_2(new Area(new int[][]{
             {3015, 3177},
             {3015, 3160},
             {3031, 3168},
@@ -297,7 +297,7 @@ public enum ChoppingLocation {
             {3024, 3188},
             {3020, 3177}
     }), false, 14, TreeType.NORMAL, TreeType.OAK, TreeType.WILLOW),
-    PORT_SARIM_WEST_1(new Area(new int[][]{
+    W_PORT_SARIM_WEST_1(new Area(new int[][]{
             {3013, 3218},
             {3013, 3210},
             {3004, 3205},
@@ -306,14 +306,14 @@ public enum ChoppingLocation {
             {2995, 3221},
             {3000, 3222}
     }), false, 8, TreeType.NORMAL, TreeType.OAK),
-    PORT_SARIM_WEST_2(new Area(new int[][]{
+    W_PORT_SARIM_WEST_2(new Area(new int[][]{
             {3010, 3237},
             {3010, 3218},
             {2992, 3223},
             {2989, 3232},
             {2996, 3237}
     }), false, 8, TreeType.NORMAL),
-    PORT_SARIM_WEST_3(new Area(new int[][]{
+    W_PORT_SARIM_WEST_3(new Area(new int[][]{
             {3009, 3257},
             {3015, 3251},
             {2991, 3237},
@@ -538,7 +538,7 @@ public enum ChoppingLocation {
             {3183, 3285},
             {3164, 3287}
     }), false, 8, TreeType.NORMAL, TreeType.WILLOW),
-    RIVER_LUM_1(new Area(new int[][]{
+    W_RIVER_LUM_1(new Area(new int[][]{
             {3178, 3341},
             {3178, 3315},
             {3156, 3318},
@@ -546,14 +546,14 @@ public enum ChoppingLocation {
             {3158, 3341},
             {3167, 3342}
     }), false, 10, TreeType.NORMAL),
-    RIVER_LUM_2(new Area(new int[][]{
+    W_RIVER_LUM_2(new Area(new int[][]{
             {3176, 3338},
             {3176, 3315},
             {3202, 3307},
             {3205, 3326},
             {3190, 3337}
     }), false, 10, TreeType.NORMAL, TreeType.OAK),
-    RIVER_LUM_3(new Area(new int[][]{
+    W_RIVER_LUM_3(new Area(new int[][]{
             {3217, 3310},
             {3223, 3310},
             {3223, 3299},
