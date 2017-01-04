@@ -100,8 +100,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
     	script.log(this, false, "Received command: " + command);
         String[] parts = command.split(":");
         if (parts[0].equals("bestLoc")) {
-            TreeType log = TreeType.valueOf(parts[1]);
-            ChoppingLocation bestLoc = ChoppingLocation.valueOf(parts[2]);
+            ChoppingLocation bestLoc = ChoppingLocation.valueOf(parts[1]);
             Vars.get().chopping_location = bestLoc;
             script.log(this, false, "New best location: " + bestLoc);
         }
