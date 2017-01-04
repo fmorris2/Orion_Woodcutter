@@ -45,7 +45,7 @@ public class ChopTree extends Task<OrionWoodcutter> {
 
     @Override
     public String toString() {
-        return "Chopping tree";
+        return "Chopping " + Vars.get().tree_type;
     }
 
 }
