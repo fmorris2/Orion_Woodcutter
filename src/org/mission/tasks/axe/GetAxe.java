@@ -20,7 +20,7 @@ public class GetAxe extends Task<OrionWoodcutter> {
 
     @Override
     public boolean validate() {
-        if (!client.isLoggedIn() || OW_Vars.get().is_upgrading_axe)
+        if (!client.isLoggedIn() || !myPlayer().isVisible() || OW_Vars.get().is_upgrading_axe)
             return false;
         
         return !equipment.isWearingItem(EquipmentSlot.WEAPON) && woodcutting.getBestUsableAxe(false) == null;
