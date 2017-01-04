@@ -97,6 +97,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, Message
 
     @Override
     public void receiveCommand(String command) {
+    	script.log(this, false, "Received command: " + command);
         String[] parts = command.split(":");
         if (parts[0].equals("bestLoc")) {
             TreeType log = TreeType.valueOf(parts[1]);
