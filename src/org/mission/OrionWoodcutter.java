@@ -10,6 +10,8 @@ import org.mission.tasks.axe.GetAxe;
 import org.mission.tasks.axe.UpgradeAxe;
 import org.osbot.rs07.api.ui.Message;
 
+import viking.api.skills.fishing.enums.FishType;
+import viking.api.skills.woodcutting.enums.AxeType;
 import viking.api.skills.woodcutting.enums.TreeType;
 import viking.framework.command.CommandReceiver;
 import viking.framework.goal.GoalList;
@@ -18,9 +20,13 @@ import viking.framework.mission.Mission;
 import viking.framework.script.VikingScript;
 import viking.framework.task.TaskManager;
 
+
 public class OrionWoodcutter extends Mission implements CommandReceiver{
 
     private final TaskManager<OrionWoodcutter> TASK_MANAGER = new TaskManager<>(this);
+
+    private final int[] ITEMS_NEEDED = AxeType.getItemIDs();
+    private final int[] ITEMS_WILLING_TO_SELL = new int[FishType.getItemIDs().length + AxeType.getItemIDs().length];
 
     private CommandReceiver orion_main;
     private TreeType target;
@@ -72,7 +78,10 @@ public class OrionWoodcutter extends Mission implements CommandReceiver{
     public void onMissionStart() {
         updateTargetTree();
         updateChoppingLoc();
-        
+        item_managment.items_needed = ITEMS_NEEDED;
+        System.arraycopy(FishType.getItemIDs(), 0, ITEMS_WILLING_TO_SELL, 0, FishType.getItemIDs().length);
+        System.arraycopy(AxeType.getItemIDs(), 0, ITEMS_WILLING_TO_SELL, 0, FishType.getItemIDs().length + AxeType.getItemIDs().length);
+        item_managment.items_willing_to_sell = ITEMS_WILLING_TO_SELL;
         TASK_MANAGER.addTask(new OW_DepositItems(this), new GetAxe(this), new UpgradeAxe(this), new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this));
     }
 
