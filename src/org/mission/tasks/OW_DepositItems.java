@@ -2,6 +2,7 @@ package org.mission.tasks;
 
 import org.mission.OrionWoodcutter;
 
+import org.mission.data.vars.OW_Vars;
 import viking.api.Timing;
 import viking.api.skills.woodcutting.enums.AxeType;
 import viking.framework.task.Task;
@@ -20,16 +21,31 @@ public class OW_DepositItems extends Task<OrionWoodcutter> {
     }
 
     public void execute() {
-        if (bank.isOpen()) {
-            if (bank.depositAllExcept(AxeType.getItemIDs()))
-                Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500));
-        } else {
-            if (bankUtils.isInBank()) {
-                if (bankUtils.open())
-                    Timing.waitCondition(conditions.BANK_OPEN, 150, random(2000, 2500));
+        if (OW_Vars.get().chopping_location.shouldUseDepositBox()) {
+            if (depositBox.isOpen()) {
+                if (depositBox.depositAllExcept(AxeType.getItemIDs()))
+                    Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500));
             } else {
-                if (walkUtils.walkToArea(bankUtils.getClosest()))
-                    Timing.waitCondition(() -> bankUtils.isInBank(), 150, random(2000, 2500));
+                if (bankUtils.isInBank()) {
+                    if (depositBox.open())
+                        Timing.waitCondition(() -> depositBox.isOpen(), 150, random(2000, 2500));
+                } else {
+                    if (getWalking().webWalk(bankUtils.getAllBanks(false, true)))
+                        Timing.waitCondition(() -> bankUtils.isInBank(), 150, random(2000, 2500));
+                }
+            }
+        } else {
+            if (bank.isOpen()) {
+                if (bank.depositAllExcept(AxeType.getItemIDs()))
+                    Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500));
+            } else {
+                if (bankUtils.isInBank()) {
+                    if (bankUtils.open())
+                        Timing.waitCondition(conditions.BANK_OPEN, 150, random(2000, 2500));
+                } else {
+                    if (getWalking().webWalk(bankUtils.getAllBanks(false, false)))
+                        Timing.waitCondition(() -> bankUtils.isInBank(), 150, random(2000, 2500));
+                }
             }
         }
     }
