@@ -1,7 +1,7 @@
 package org.mission;
 
 import org.mission.data.enums.ChoppingLocation;
-import org.mission.data.vars.OW_Vars;
+import org.mission.data.OW_Vars;
 import org.mission.tasks.ChopTree;
 import org.mission.tasks.OW_DepositItems;
 import org.mission.tasks.WalkToTreeLocation;
@@ -10,8 +10,6 @@ import org.mission.tasks.axe.GetAxe;
 import org.mission.tasks.axe.UpgradeAxe;
 import org.osbot.rs07.api.ui.Message;
 
-import viking.api.skills.fishing.enums.FishType;
-import viking.api.skills.woodcutting.enums.AxeType;
 import viking.api.skills.woodcutting.enums.TreeType;
 import viking.framework.command.CommandReceiver;
 import viking.framework.goal.GoalList;

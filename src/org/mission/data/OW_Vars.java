@@ -1,4 +1,4 @@
-package org.mission.data.vars;
+package org.mission.data;
 
 import org.mission.data.enums.ChoppingLocation;
 import viking.api.skills.woodcutting.enums.TreeType;

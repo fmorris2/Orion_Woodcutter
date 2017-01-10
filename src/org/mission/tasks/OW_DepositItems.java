@@ -2,7 +2,7 @@ package org.mission.tasks;
 
 import org.mission.OrionWoodcutter;
 
-import org.mission.data.vars.OW_Vars;
+import org.mission.data.OW_Vars;
 import viking.api.Timing;
 import viking.api.skills.woodcutting.enums.AxeType;
 import viking.framework.task.Task;
