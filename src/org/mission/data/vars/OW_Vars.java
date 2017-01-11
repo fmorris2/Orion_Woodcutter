@@ -18,7 +18,7 @@ public class OW_Vars {
         vars = null;
     }
 
-    public boolean is_upgrading_axe;
+    public boolean is_upgrading_axe, needsBronzeAxe;
 
     public ChoppingLocation chopping_location;
     public TreeType tree_type;

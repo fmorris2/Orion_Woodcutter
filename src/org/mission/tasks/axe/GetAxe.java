@@ -20,7 +20,8 @@ public class GetAxe extends Task<OrionWoodcutter> {
 
     @Override
     public boolean validate() {
-        if (!client.isLoggedIn() || !myPlayer().isVisible() || OW_Vars.get().is_upgrading_axe)
+        if (!client.isLoggedIn() || !myPlayer().isVisible() || OW_Vars.get().is_upgrading_axe
+        		|| OW_Vars.get().needsBronzeAxe)
             return false;
         
         return !equipment.isWearingItem(EquipmentSlot.WEAPON) && woodcutting.getBestUsableAxe(false) == null;
@@ -36,8 +37,11 @@ public class GetAxe extends Task<OrionWoodcutter> {
 
             final AxeType best_usable_axe = woodcutting.getBestUsableAxe(true);
             if (best_usable_axe == null)
+            {
+            	OW_Vars.get().needsBronzeAxe = true;
                 return;
-
+            }
+            
             if (bank.withdraw(best_usable_axe.getItemID(), 1))
                 if (Timing.waitCondition(() -> inventory.getItems().length > 0, 150, random(2000, 2500)))
                     if (woodcutting.getBestUsableAxe(false) == best_usable_axe)
