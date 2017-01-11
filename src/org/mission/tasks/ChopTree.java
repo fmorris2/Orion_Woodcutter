@@ -1,7 +1,7 @@
 package org.mission.tasks;
 
 import org.mission.OrionWoodcutter;
-import org.mission.data.vars.OW_Vars;
+import org.mission.data.OW_Vars;
 import org.osbot.rs07.api.model.RS2Object;
 
 import viking.api.Timing;

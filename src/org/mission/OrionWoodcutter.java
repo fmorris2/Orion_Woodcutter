@@ -1,7 +1,7 @@
 package org.mission;
 
 import org.mission.data.enums.ChoppingLocation;
-import org.mission.data.vars.OW_Vars;
+import org.mission.data.OW_Vars;
 import org.mission.tasks.ChopTree;
 import org.mission.tasks.OW_DepositItems;
 import org.mission.tasks.WalkToTreeLocation;
@@ -17,6 +17,7 @@ import viking.framework.goal.impl.InfiniteGoal;
 import viking.framework.mission.Mission;
 import viking.framework.script.VikingScript;
 import viking.framework.task.TaskManager;
+
 
 public class OrionWoodcutter extends Mission implements CommandReceiver{
 
@@ -72,7 +73,6 @@ public class OrionWoodcutter extends Mission implements CommandReceiver{
     public void onMissionStart() {
         updateTargetTree();
         updateChoppingLoc();
-        
         TASK_MANAGER.addTask(new OW_DepositItems(this), new GetAxe(this), new UpgradeAxe(this), new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this));
     }
 
