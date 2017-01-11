@@ -1,12 +1,13 @@
 package org.mission;
 
-import org.mission.data.enums.ChoppingLocation;
 import org.mission.data.OW_Vars;
+import org.mission.data.enums.ChoppingLocation;
 import org.mission.tasks.ChopTree;
 import org.mission.tasks.OW_DepositItems;
 import org.mission.tasks.WalkToTreeLocation;
 import org.mission.tasks.axe.EquipAxe;
 import org.mission.tasks.axe.GetAxe;
+import org.mission.tasks.axe.GetBronzeAxe;
 import org.mission.tasks.axe.UpgradeAxe;
 import org.osbot.rs07.api.ui.Message;
 
@@ -73,7 +74,9 @@ public class OrionWoodcutter extends Mission implements CommandReceiver{
     public void onMissionStart() {
         updateTargetTree();
         updateChoppingLoc();
-        TASK_MANAGER.addTask(new OW_DepositItems(this), new GetAxe(this), new UpgradeAxe(this), new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this));
+        TASK_MANAGER.addTask(new OW_DepositItems(this), new GetAxe(this), new UpgradeAxe(this), 
+        		new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this),
+        		new GetBronzeAxe(this));
     }
 
     @Override
