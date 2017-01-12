@@ -11,8 +11,8 @@ import viking.api.skills.woodcutting.enums.AxeType;
  */
 public class UpgradeAxe extends GetAxe {
 
-    private AxeType appropriate_pickaxe;
-    private AxeType current_pickaxe;
+    private AxeType appropriate_axe;
+    private AxeType current_axe;
 
     public UpgradeAxe(OrionWoodcutter mission) {
         super(mission);
@@ -26,10 +26,10 @@ public class UpgradeAxe extends GetAxe {
         if (!bank.isOpen())
             return false;
 
-        appropriate_pickaxe = woodcutting.currentAppropriateAxe();
-        current_pickaxe = woodcutting.getBestUsableAxe(false);
+        appropriate_axe = woodcutting.currentAppropriateAxe();
+        current_axe = woodcutting.getBestUsableAxe(false);
 
-        return current_pickaxe != null && current_pickaxe != appropriate_pickaxe && bank.getItem(appropriate_pickaxe.getItemID()) != null;
+        return current_axe != null && current_axe != appropriate_axe && bank.getItem(appropriate_axe.getItemID()) != null;
 
     }
 
@@ -46,7 +46,7 @@ public class UpgradeAxe extends GetAxe {
 
     @Override
     public String toString() {
-        return "Upgrading pickaxe";
+        return "Upgrading axe";
     }
 
 }
