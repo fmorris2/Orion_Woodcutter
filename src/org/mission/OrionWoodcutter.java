@@ -15,12 +15,14 @@ import viking.api.skills.woodcutting.enums.TreeType;
 import viking.framework.command.CommandReceiver;
 import viking.framework.goal.GoalList;
 import viking.framework.goal.impl.InfiniteGoal;
+import viking.framework.item_management.IMEntry;
+import viking.framework.item_management.ItemManagement;
 import viking.framework.mission.Mission;
 import viking.framework.script.VikingScript;
 import viking.framework.task.TaskManager;
 
 
-public class OrionWoodcutter extends Mission implements CommandReceiver{
+public class OrionWoodcutter extends Mission implements CommandReceiver, ItemManagement {
 
     private final TaskManager<OrionWoodcutter> TASK_MANAGER = new TaskManager<>(this);
 
@@ -114,4 +116,16 @@ public class OrionWoodcutter extends Mission implements CommandReceiver{
         if (m.getMessage().contains("advanced a Woodcutting level") && updateTargetTree())
             updateChoppingLoc();
     }
+
+	@Override
+	public IMEntry[] itemsToBuy()
+	{
+		return new IMEntry[]{};
+	}
+
+	@Override
+	public int[] itemsToSell()
+	{
+		return ItemManagement.ORION_SELL_ITEMS;
+	}
 }
