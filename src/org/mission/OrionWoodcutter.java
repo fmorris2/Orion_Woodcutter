@@ -10,11 +10,14 @@ import org.mission.tasks.axe.GetAxe;
 import org.mission.tasks.axe.GetBronzeAxe;
 import org.mission.tasks.axe.UpgradeAxe;
 import org.osbot.rs07.api.ui.Message;
+import org.osbot.rs07.api.ui.Skill;
 
+import viking.api.skills.woodcutting.enums.AxeType;
 import viking.api.skills.woodcutting.enums.TreeType;
 import viking.framework.command.CommandReceiver;
 import viking.framework.goal.GoalList;
 import viking.framework.goal.impl.InfiniteGoal;
+import viking.framework.goal.impl.SkillGoal;
 import viking.framework.item_management.IMEntry;
 import viking.framework.item_management.ItemManagement;
 import viking.framework.mission.Mission;
@@ -120,7 +123,13 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
 	@Override
 	public IMEntry[] itemsToBuy()
 	{
-		return new IMEntry[]{};
+		return new IMEntry[]
+		{
+			new IMEntry(this, AxeType.STEEL.getItemID(), 1, "Steel axe", new SkillGoal(skills, Skill.WOODCUTTING, 6)),
+			new IMEntry(this, AxeType.MITHRIL.getItemID(), 1, "Mithril axe", new SkillGoal(skills, Skill.WOODCUTTING, 21)),
+			new IMEntry(this, AxeType.ADAMANT.getItemID(), 1, "Adamant axe", new SkillGoal(skills, Skill.WOODCUTTING, 31)),
+			new IMEntry(this, AxeType.RUNE.getItemID(), 1, "Rune axe", new SkillGoal(skills, Skill.WOODCUTTING, 41)),
+		};
 	}
 
 	@Override
