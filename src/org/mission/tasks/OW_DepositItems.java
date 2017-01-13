@@ -11,6 +11,8 @@ import viking.framework.task.Task;
  */
 public class OW_DepositItems extends Task<OrionWoodcutter> {
 
+	private boolean hasCheckedNormalBank;
+	
     public OW_DepositItems(OrionWoodcutter mission) {
         super(mission);
     }
@@ -20,7 +22,7 @@ public class OW_DepositItems extends Task<OrionWoodcutter> {
     }
 
     public void execute() {
-        if (OW_Vars.get().chopping_location.shouldUseDepositBox()) {
+        if (hasCheckedNormalBank && OW_Vars.get().chopping_location.shouldUseDepositBox()) {
             if (depositBox.isOpen()) {
                 if (depositBox.depositAllExcept(woodcutting.getBestUsableAxe(false).getItemID()))
                     Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500));
@@ -35,8 +37,8 @@ public class OW_DepositItems extends Task<OrionWoodcutter> {
             }
         } else {
             if (bank.isOpen()) {
-                if (bank.depositAllExcept(woodcutting.getBestUsableAxe(false).getItemID()))
-                    Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500));
+                if (bank.depositAllExcept(woodcutting.getBestUsableAxe(false).getItemID()) && Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500)))
+                	hasCheckedNormalBank = true;
             } else {
                 if (bankUtils.isInBank()) {
                     if (bankUtils.open())
