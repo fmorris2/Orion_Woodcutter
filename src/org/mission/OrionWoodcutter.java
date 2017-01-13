@@ -125,7 +125,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
 	{
 		return new IMEntry[]
 		{
-			new IMEntry(this, AxeType.STEEL.getItemID(), 1, 250, "Steel axe", new SkillGoal(skills, Skill.WOODCUTTING, 6)),
+			new IMEntry(this, AxeType.STEEL.getItemID(), 1, 500, "Steel axe", new SkillGoal(skills, Skill.WOODCUTTING, 6)),
 			new IMEntry(this, AxeType.MITHRIL.getItemID(), 1, "Mithril axe", new SkillGoal(skills, Skill.WOODCUTTING, 21)),
 			new IMEntry(this, AxeType.ADAMANT.getItemID(), 1, "Adamant axe", new SkillGoal(skills, Skill.WOODCUTTING, 31)),
 			new IMEntry(this, AxeType.RUNE.getItemID(), 1, "Rune axe", new SkillGoal(skills, Skill.WOODCUTTING, 41)),
