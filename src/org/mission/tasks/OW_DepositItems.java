@@ -38,7 +38,6 @@ public class OW_DepositItems extends Task<OrionWoodcutter> {
             }
         } else {
             if (bank.isOpen()) {
-            	script.log(this, false, "BANK IS OPEN1!!!");
             	AxeType axe = woodcutting.getBestUsableAxe(true);
                 if ((axe == null ? bank.depositAll() : bank.depositAllExcept(axe.getItemID())) && Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500)))
                 	hasCheckedNormalBank = true;
