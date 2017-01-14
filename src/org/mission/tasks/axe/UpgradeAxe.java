@@ -29,14 +29,28 @@ public class UpgradeAxe extends GetAxe {
         if(current_axe == null || current_axe == appropriate_axe)
         	return false;
         
-        if(script.BANK_CACHE.get().containsKey(appropriate_axe.getItemID()))
+        if(hasUpgradeInCache(appropriate_axe, current_axe))
+        {
+        	script.log(this, false, "Has upgrade in bank, according to bank cache");
         	return true;
+        }
         
         if (!bank.isOpen())
             return false;
 
         return bank.getItem(appropriate_axe.getItemID()) != null;
 
+    }
+    
+    private boolean hasUpgradeInCache(AxeType appropriate, AxeType current)
+    {
+    	AxeType[] axes = AxeType.values();
+    	for(int i = axes.length - 1; i >= 0; i--)
+    		if(axes[i].ordinal() <= appropriate.ordinal() && axes[i].ordinal() > current.ordinal()
+    				&& script.BANK_CACHE.get().containsKey(axes[i].getItemID()))
+    			return true;
+    		
+    	return false;
     }
 
     @Override
