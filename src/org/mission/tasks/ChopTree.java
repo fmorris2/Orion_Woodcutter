@@ -46,7 +46,7 @@ public class ChopTree extends Task<OrionWoodcutter> {
 
     @Override
     public String toString() {
-        return "Chopping " + OW_Vars.get().tree_type;
+        return myPlayer().isAnimating() ? "Chopping " + OW_Vars.get().tree_type : "Waiting to chop " + OW_Vars.get().tree_type;
     }
 
 }

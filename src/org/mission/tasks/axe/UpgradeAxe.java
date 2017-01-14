@@ -22,14 +22,20 @@ public class UpgradeAxe extends GetAxe {
     public boolean validate() {
         if (!client.isLoggedIn() || OW_Vars.get().is_upgrading_axe)
             return false;
-
+        
+        appropriate_axe = woodcutting.currentAppropriateAxe();
+        current_axe = woodcutting.getBestUsableAxe(false);
+        
+        if(current_axe == null || current_axe == appropriate_axe)
+        	return false;
+        
+        if(script.BANK_CACHE.get().containsKey(appropriate_axe.getItemID()))
+        	return true;
+        
         if (!bank.isOpen())
             return false;
 
-        appropriate_axe = woodcutting.currentAppropriateAxe();
-        current_axe = woodcutting.getBestUsableAxe(false);
-
-        return current_axe != null && current_axe != appropriate_axe && bank.getItem(appropriate_axe.getItemID()) != null;
+        return bank.getItem(appropriate_axe.getItemID()) != null;
 
     }
 
