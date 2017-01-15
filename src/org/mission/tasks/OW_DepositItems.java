@@ -19,7 +19,7 @@ public class OW_DepositItems extends Task<OrionWoodcutter> {
     }
 
     public boolean validate() {
-        return inventory.isFull();
+        return inventory.isFull() || (bankUtils.isInBank() && inventory.contains(995));
     }
 
     public void execute() {
