@@ -22,15 +22,35 @@ public class UpgradeAxe extends GetAxe {
     public boolean validate() {
         if (!client.isLoggedIn() || OW_Vars.get().is_upgrading_axe)
             return false;
-
+        
+        appropriate_axe = woodcutting.currentAppropriateAxe();
+        current_axe = woodcutting.getBestUsableAxe(false);
+        
+        if(current_axe == null || current_axe == appropriate_axe)
+        	return false;
+        
+        if(hasUpgradeInCache(appropriate_axe, current_axe))
+        {
+        	script.log(this, false, "Has upgrade in bank, according to bank cache");
+        	return true;
+        }
+        
         if (!bank.isOpen())
             return false;
 
-        appropriate_axe = woodcutting.currentAppropriateAxe();
-        current_axe = woodcutting.getBestUsableAxe(false);
+        return bank.getItem(appropriate_axe.getItemID()) != null;
 
-        return current_axe != null && current_axe != appropriate_axe && bank.getItem(appropriate_axe.getItemID()) != null;
-
+    }
+    
+    private boolean hasUpgradeInCache(AxeType appropriate, AxeType current)
+    {
+    	AxeType[] axes = AxeType.values();
+    	for(int i = axes.length - 1; i >= 0; i--)
+    		if(axes[i].ordinal() <= appropriate.ordinal() && axes[i].ordinal() > current.ordinal()
+    				&& script.BANK_CACHE.get().containsKey(axes[i].getItemID()))
+    			return true;
+    		
+    	return false;
     }
 
     @Override

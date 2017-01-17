@@ -13,6 +13,7 @@ import org.osbot.rs07.api.ui.Message;
 import org.osbot.rs07.api.ui.Skill;
 
 import viking.api.skills.woodcutting.enums.AxeType;
+import viking.api.skills.woodcutting.enums.LogType;
 import viking.api.skills.woodcutting.enums.TreeType;
 import viking.framework.command.CommandReceiver;
 import viking.framework.goal.GoalList;
@@ -21,11 +22,13 @@ import viking.framework.goal.impl.SkillGoal;
 import viking.framework.item_management.IMEntry;
 import viking.framework.item_management.ItemManagement;
 import viking.framework.mission.Mission;
+import viking.framework.mule.MuleManagement;
+import viking.framework.mule.MuleOrder;
 import viking.framework.script.VikingScript;
 import viking.framework.task.TaskManager;
 
 
-public class OrionWoodcutter extends Mission implements CommandReceiver, ItemManagement {
+public class OrionWoodcutter extends Mission implements CommandReceiver, ItemManagement, MuleManagement {
 
     private final TaskManager<OrionWoodcutter> TASK_MANAGER = new TaskManager<>(this);
 
@@ -136,5 +139,11 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
 	public int[] itemsToSell()
 	{
 		return ItemManagement.ORION_SELL_ITEMS;
+	}
+
+	@Override
+	public MuleOrder getOrder()
+	{
+		return new MuleOrder(script, LogType.getItemIDs());
 	}
 }

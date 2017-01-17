@@ -4,6 +4,7 @@ import org.mission.OrionWoodcutter;
 import org.mission.data.OW_Vars;
 
 import viking.api.Timing;
+import viking.api.skills.woodcutting.enums.AxeType;
 import viking.framework.task.Task;
 
 /**
@@ -18,7 +19,7 @@ public class OW_DepositItems extends Task<OrionWoodcutter> {
     }
 
     public boolean validate() {
-        return inventory.isFull();
+        return inventory.isFull() || (bankUtils.isInBank() && inventory.contains(995));
     }
 
     public void execute() {
@@ -37,7 +38,8 @@ public class OW_DepositItems extends Task<OrionWoodcutter> {
             }
         } else {
             if (bank.isOpen()) {
-                if (bank.depositAllExcept(woodcutting.getBestUsableAxe(false).getItemID()) && Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500)))
+            	AxeType axe = woodcutting.getBestUsableAxe(true);
+                if ((axe == null ? bank.depositAll() : bank.depositAllExcept(axe.getItemID())) && Timing.waitCondition(() -> !inventory.isFull(), 150, random(2000, 2500)))
                 	hasCheckedNormalBank = true;
             } else {
                 if (bankUtils.isInBank()) {
