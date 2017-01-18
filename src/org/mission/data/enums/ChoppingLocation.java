@@ -485,14 +485,14 @@ public enum ChoppingLocation {
             {3160, 3250},
             {3156, 3233},
             {3134, 3229}
-    }), false, false, 25, -1, TreeType.NORMAL, TreeType.OAK, TreeType.YEW),
+    }), false, false, 25, 10, TreeType.NORMAL, TreeType.OAK, TreeType.YEW),
     W_LUMBRIDGE_WEST_2(new Area(new int[][]{
             {3134, 3226},
             {3142, 3212},
             {3158, 3212},
             {3155, 3233},
             {3150, 3234}
-    }), false, false, 25, -1, TreeType.NORMAL, TreeType.OAK, TreeType.YEW),
+    }), false, false, 25, 10, TreeType.NORMAL, TreeType.OAK, TreeType.YEW),
     W_LUMBRIDGE_WEST_3(new Area(new int[][]{
             {3158, 3232},
             {3156, 3209},
@@ -500,7 +500,7 @@ public enum ChoppingLocation {
             {3176, 3206},
             {3173, 3229},
             {3170, 3231}
-    }), false, false, 25, -1, TreeType.NORMAL, TreeType.OAK, TreeType.YEW),
+    }), false, false, 25, 10, TreeType.NORMAL, TreeType.OAK, TreeType.YEW),
     W_LUMBRIDGE_WEST_4(new Area(new int[][]{
             {3177, 3232},
             {3176, 3206},
@@ -605,7 +605,7 @@ public enum ChoppingLocation {
             {3253, 3204},
             {3252, 3198},
             {3247, 3199}
-    }), false, false, 25, -1, TreeType.YEW);
+    }), false, false, 25, 10, TreeType.YEW);
 
 
     private final Area AREA;
