@@ -47,12 +47,12 @@ public class GetAxe extends Task<OrionWoodcutter> {
                     if (woodcutting.getBestUsableAxe(false) == best_usable_axe)
                         OW_Vars.get().is_upgrading_axe = false;
         } else {
-            if (bankUtils.isInBank()) {
+            if (bankUtils.isInBank(false)) {
                 if (bankUtils.open())
                     Timing.waitCondition(() -> bank.isOpen(), 150, random(2000, 2500));
             } else {
-                if (walkUtils.walkToArea(bankUtils.getClosest()))
-                    Timing.waitCondition(() -> bankUtils.isInBank(), 150, random(2000, 2500));
+                if (walkUtils.walkToArea(bankUtils.getClosest(false)))
+                    Timing.waitCondition(() -> bankUtils.isInBank(false), 150, random(2000, 2500));
             }
         }
 
