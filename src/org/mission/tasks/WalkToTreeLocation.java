@@ -22,8 +22,8 @@ public class WalkToTreeLocation extends Task<OrionWoodcutter> {
         if (OW_Vars.get().is_upgrading_axe)
             return false;
 
-        final RS2Object TREE = objects.closest(OW_Vars.get().chopping_location.getArea(), OW_Vars.get().tree_type.getTreeName());
-        return TREE == null && !inventory.isFull() && woodcutting.getBestUsableAxe(false) != null;
+        return !OW_Vars.get().chopping_location.getArea().contains(myPosition()) 
+        		 && !inventory.isFull() && woodcutting.getBestUsableAxe(false) != null;
     }
 
     @Override
