@@ -102,7 +102,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
     	script.log(this, false, "Updating target tree");
         TreeType old = currentTree;
         currentTree = woodcutting.getBestChoppableTreeType(false);
-        if (currentTree != null && currentTree.ordinal() > target.ordinal())
+        if (target != null && currentTree != null && currentTree.ordinal() > target.ordinal())
             currentTree = target;
 
         return currentTree != null && old != currentTree;
