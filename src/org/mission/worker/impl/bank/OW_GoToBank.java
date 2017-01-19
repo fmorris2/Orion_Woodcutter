@@ -17,6 +17,7 @@ public class OW_GoToBank extends OWWorker
 	public void work()
 	{
 		script.log(this, false, "Go to bank");
+		walking.webWalk(bankUtils.getAllBanks(false, ACCEPT_DEPOSIT_BOX));
 	}
 
 }

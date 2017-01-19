@@ -65,7 +65,10 @@ public class OW_WorkerManager extends WorkerManager<OrionWoodcutter>
 		}
 		
 		if(WIELD_AXE.needsToWieldAxe()) //check to wield axe
+		{
+			debug("Needs to wield axe...");
 			return WIELD_AXE;
+		}
 		
 		//loc checks
 		return locChecks();
@@ -76,9 +79,13 @@ public class OW_WorkerManager extends WorkerManager<OrionWoodcutter>
 		final ChoppingLocation LOC = mission.currentLoc;
 	
 		if(!LOC.getArea().contains(myPosition())) //not in loc
+		{
+			debug("Needs to go to location...");
 			return GO_TO_LOCATION;
+		}
 		
 		//in location
+		debug("Needs to chop...");
 		return CHOP;
 	}
 	

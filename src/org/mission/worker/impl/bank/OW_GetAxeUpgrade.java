@@ -9,7 +9,8 @@ import viking.api.skills.woodcutting.enums.AxeType;
 
 public class OW_GetAxeUpgrade extends OWWorker
 {
-
+	private AxeType upgrade;
+	
 	public OW_GetAxeUpgrade(OrionWoodcutter mission)
 	{
 		super(mission);
@@ -18,7 +19,9 @@ public class OW_GetAxeUpgrade extends OWWorker
 	@Override
 	public void work()
 	{
-		script.log(this, false, "Get axe upgrade");
+		script.log(this, false, "Get axe upgrade: " + upgrade);
+		if(inventory.contains(upgrade.getItemID()))
+			bank.withdraw(upgrade.getItemID(), 1);
 	}
 	
 	public boolean hasUpgradeInBank()
@@ -35,7 +38,10 @@ public class OW_GetAxeUpgrade extends OWWorker
 			
 			if(bankCache.containsKey(axes[i].getItemID())
 					&& current == null || current.ordinal() < axes[i].ordinal())
+			{
+				upgrade = axes[i];
 				return true;
+			}
 		}	
 		
 		return false;

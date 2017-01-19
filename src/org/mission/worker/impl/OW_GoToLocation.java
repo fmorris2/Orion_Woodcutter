@@ -15,6 +15,7 @@ public class OW_GoToLocation extends OWWorker
 	public void work()
 	{
 		script.log(this, false, "Go to location");
+		walkUtils.walkToArea(mission.currentLoc.CENTER_AREA);
 	}
 
 }

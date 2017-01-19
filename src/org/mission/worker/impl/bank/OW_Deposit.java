@@ -14,7 +14,16 @@ public class OW_Deposit extends OWWorker
 	@Override
 	public void work()
 	{
+		boolean DEPOSIT_BOX = !bankUtils.isInBank(false);
+		
 		script.log(this, false, "Deposit Items");
+		
+		if(bank.isOpen() || depositBox.isOpen())
+			bank.depositAllExcept(mission.currentAxe.getItemID());
+		else if(DEPOSIT_BOX)
+			depositBox.open();
+		else
+			bankUtils.open();
 	}
 
 }
