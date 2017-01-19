@@ -73,7 +73,13 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
 
     @Override
     public int execute() {
-        MANAGER.work();
+    	if(currentTree == null)
+    	{
+    		if(updateTargetTree())
+    			updateChoppingLoc();
+    	}
+    	else	
+    		MANAGER.work();
         return 600;
     }
 
@@ -96,10 +102,10 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
     	script.log(this, false, "Updating target tree");
         TreeType old = currentTree;
         currentTree = woodcutting.getBestChoppableTreeType(false);
-        if (currentTree.ordinal() > target.ordinal())
+        if (currentTree != null && currentTree.ordinal() > target.ordinal())
             currentTree = target;
 
-        return old != currentTree;
+        return currentTree != null && old != currentTree;
     }
 
     public void updateChoppingLoc() {
