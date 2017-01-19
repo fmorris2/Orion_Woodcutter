@@ -20,8 +20,13 @@ public class OW_GetAxeUpgrade extends OWWorker
 	public void work()
 	{
 		script.log(this, false, "Get axe upgrade: " + upgrade);
-		if(inventory.contains(upgrade.getItemID()))
-			bank.withdraw(upgrade.getItemID(), 1);
+		if(!inventory.contains(upgrade.getItemID()))
+		{
+			if(!inventory.isEmpty())
+				bank.depositAll();
+			else
+				bank.withdraw(upgrade.getItemID(), 1);
+		}
 	}
 	
 	public boolean hasUpgradeInBank()

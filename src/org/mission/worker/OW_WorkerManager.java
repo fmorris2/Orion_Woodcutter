@@ -70,6 +70,9 @@ public class OW_WorkerManager extends WorkerManager<OrionWoodcutter>
 			return WIELD_AXE;
 		}
 		
+		if(inventory.isFull()) //check if needs to bank because of full inventory
+			return IN_ANY_BANK ? DEPOSIT_ITEMS : BANK_CACHE.isEmpty() ? GO_TO_NORMAL_BANK : GO_TO_ANY_BANK;
+		
 		//loc checks
 		return locChecks();
 	}
