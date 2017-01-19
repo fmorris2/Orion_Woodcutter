@@ -42,7 +42,7 @@ public class OW_GetAxeUpgrade extends OWWorker
 				continue;
 			
 			if(bankCache.containsKey(axes[i].getItemID())
-					&& current == null || current.ordinal() < axes[i].ordinal())
+					&& (current == null || current.ordinal() < axes[i].ordinal()))
 			{
 				upgrade = axes[i];
 				return true;
