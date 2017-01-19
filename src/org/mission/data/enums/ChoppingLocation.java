@@ -1,6 +1,8 @@
 package org.mission.data.enums;
 
 import org.osbot.rs07.api.map.Area;
+import org.osbot.rs07.api.map.Position;
+
 import viking.api.skills.woodcutting.enums.TreeType;
 
 /**
@@ -608,12 +610,13 @@ public enum ChoppingLocation {
     }), false, false, 25, 10, TreeType.YEW);
 
 
-    private final Area AREA;
-    private final boolean MEMBERS;
-    private final boolean SHOULD_USE_DEPOSIT_BOX;
-    private final int CAPACITY;
-    private final int MINIMUM_COMBAT_LEVEL;
-    private final TreeType[] TREE_TYPE;
+    public final Area AREA;
+    public final Area CENTER_AREA;
+    public final boolean MEMBERS;
+    public final boolean SHOULD_USE_DEPOSIT_BOX;
+    public final int CAPACITY;
+    public final int MINIMUM_COMBAT_LEVEL;
+    public final TreeType[] TREE_TYPE;
 
     ChoppingLocation(Area area, boolean members, boolean should_use_deposit_box, int capacity, int minimum_combat_level, TreeType... tree_type) {
         this.AREA = area;
@@ -622,6 +625,30 @@ public enum ChoppingLocation {
         this.CAPACITY = capacity;
         this.MINIMUM_COMBAT_LEVEL = minimum_combat_level;
         this.TREE_TYPE = tree_type;
+        this.CENTER_AREA = getCenterArea();
+    }
+    
+    private Area getCenterArea()
+    {
+    	int minX = Integer.MAX_VALUE, maxX = -1, minY = Integer.MAX_VALUE, maxY = -1;
+    	int z = 0;
+    	for(Position p : AREA.getPositions())
+    	{
+    		z = p.getZ();
+    		if(p.getX() < minX)
+    			minX = p.getX();
+    		if(p.getX() > maxX)
+    			maxX = p.getX();
+    		if(p.getY() < minY)
+    			minY = p.getY();
+    		if(p.getY() > maxY)
+    			maxY = p.getY();
+    	}
+    	
+    	int midX = (int)((minX + maxX) / 2.0);
+    	int midY = (int)((minY + maxY) / 2.0);
+    	
+    	return new Area(new Position((midX - 3), (midY + 3), z), new Position((midX + 3), (midY - 3), z));
     }
 
     public Area getArea() {

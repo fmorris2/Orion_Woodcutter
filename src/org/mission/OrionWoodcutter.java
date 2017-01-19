@@ -1,14 +1,7 @@
 package org.mission;
 
-import org.mission.data.OW_Vars;
 import org.mission.data.enums.ChoppingLocation;
-import org.mission.tasks.ChopTree;
-import org.mission.tasks.OW_DepositItems;
-import org.mission.tasks.WalkToTreeLocation;
-import org.mission.tasks.axe.EquipAxe;
-import org.mission.tasks.axe.GetAxe;
-import org.mission.tasks.axe.GetBronzeAxe;
-import org.mission.tasks.axe.UpgradeAxe;
+import org.mission.worker.OW_WorkerManager;
 import org.osbot.rs07.api.ui.Message;
 import org.osbot.rs07.api.ui.Skill;
 
@@ -16,6 +9,7 @@ import viking.api.skills.woodcutting.enums.AxeType;
 import viking.api.skills.woodcutting.enums.LogType;
 import viking.api.skills.woodcutting.enums.TreeType;
 import viking.framework.command.CommandReceiver;
+import viking.framework.goal.Goal;
 import viking.framework.goal.GoalList;
 import viking.framework.goal.impl.InfiniteGoal;
 import viking.framework.goal.impl.SkillGoal;
@@ -30,25 +24,31 @@ import viking.framework.task.TaskManager;
 
 public class OrionWoodcutter extends Mission implements CommandReceiver, ItemManagement, MuleManagement {
 
+	public final OW_WorkerManager MANAGER = new OW_WorkerManager(this);
     private final TaskManager<OrionWoodcutter> TASK_MANAGER = new TaskManager<>(this);
 
+    public TreeType currentTree;
+    public ChoppingLocation currentLoc;
+    public AxeType currentAxe;
+    
     private CommandReceiver orion_main;
     private TreeType target;
 
-    public OrionWoodcutter(VikingScript script, TreeType target_type) {
+    public OrionWoodcutter(VikingScript script, TreeType target, Goal... goals) {
         super(script);
         orion_main = script instanceof CommandReceiver ? (CommandReceiver) script : null;
-        target = target_type;
+        this.target = target;
+        this.goals = new GoalList(goals);
     }
 
     @Override
     public boolean canEnd() {
-        return false;
+        return goals.hasReachedGoals();
     }
 
     @Override
     public String getMissionName() {
-        return null;
+        return "Orion Woodcutter";
     }
 
     @Override
@@ -58,7 +58,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
 
     @Override
     public String getEndMessage() {
-        return null;
+        return "Orion Woodcutter has ended";
     }
 
     @Override
@@ -73,18 +73,19 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
 
     @Override
     public int execute() {
-        TASK_MANAGER.loop();
-        return 150;
+        MANAGER.work();
+        return 600;
     }
 
-    @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public void onMissionStart() {
         updateTargetTree();
         updateChoppingLoc();
+        /*
         TASK_MANAGER.addTask(new OW_DepositItems(this), new GetAxe(this), new UpgradeAxe(this), 
         		new EquipAxe(this), new WalkToTreeLocation(this), new ChopTree(this),
         		new GetBronzeAxe(this));
+        		*/
     }
 
     @Override
@@ -93,17 +94,17 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
 
     private boolean updateTargetTree() {
     	script.log(this, false, "Updating target tree");
-        TreeType old = OW_Vars.get().tree_type;
-        OW_Vars.get().tree_type = woodcutting.getBestChoppableTreeType(false);
-        if (OW_Vars.get().tree_type.ordinal() > target.ordinal())
-            OW_Vars.get().tree_type = target;
+        TreeType old = currentTree;
+        currentTree = woodcutting.getBestChoppableTreeType(false);
+        if (currentTree.ordinal() > target.ordinal())
+            currentTree = target;
 
-        return old != OW_Vars.get().tree_type;
+        return old != currentTree;
     }
 
     public void updateChoppingLoc() {
         script.log(this, false, "Updating chopping loc....");
-        orion_main.receiveCommand("getLoc:wc:free:" + OW_Vars.get().tree_type);
+        orion_main.receiveCommand("getLoc:wc:free:" + currentTree);
     }
 
     @Override
@@ -112,7 +113,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
         String[] parts = command.split(":");
         if (parts[0].equals("bestLoc")) {
             ChoppingLocation bestLoc = ChoppingLocation.valueOf(parts[1]);
-            OW_Vars.get().chopping_location = bestLoc;
+            currentLoc = bestLoc;
             script.log(this, false, "New best location: " + bestLoc);
         }
     }
