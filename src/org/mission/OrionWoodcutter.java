@@ -109,6 +109,8 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
     }
 
     public void updateChoppingLoc() {
+    	if(currentTree == null)
+    		return;
         script.log(this, false, "Updating chopping loc....");
         orion_main.receiveCommand("getLoc:wc:free:" + currentTree);
     }
