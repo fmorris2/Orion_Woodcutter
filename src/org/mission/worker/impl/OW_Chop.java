@@ -36,7 +36,7 @@ public class OW_Chop extends OWWorker
 		
 		targetTree = objects.closest(filter); //get the tree we should be chopping
 		
-		if(myPlayer().isAnimating() && currentTree.exists())
+		if(myPlayer().isAnimating() && currentTree != null && currentTree.exists())
 			script.log(this, false, "Chopping...");
 		else if(targetTree != null && iFact.clickObject("Chop down", targetTree, getFallBackPos(targetTree)).execute())
 		{
