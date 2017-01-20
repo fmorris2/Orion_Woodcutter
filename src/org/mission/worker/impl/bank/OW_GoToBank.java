@@ -21,7 +21,7 @@ public class OW_GoToBank extends OWWorker
 		if(!ACCEPT_DEPOSIT_BOX && mission.currentLoc.SHOULD_USE_DEPOSIT_BOX)
 			walking.webWalk(bankUtils.getAllBanks(false, false));
 		else
-			walking.walk(mission.currentLoc.BANK_AREA);
+			walkUtils.walkToArea(mission.currentLoc.BANK_AREA);
 	}
 
 }
