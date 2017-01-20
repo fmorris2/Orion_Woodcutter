@@ -18,8 +18,10 @@ public class OW_Deposit extends OWWorker
 		
 		script.log(this, false, "Deposit Items");
 		
-		if(bank.isOpen() || depositBox.isOpen())
+		if(bank.isOpen())
 			bank.depositAllExcept(mission.currentAxe.getItemID());
+		else if(depositBox.isOpen())
+			depositBox.depositAllExcept(mission.currentAxe.getItemID());
 		else if(DEPOSIT_BOX)
 			depositBox.open();
 		else
