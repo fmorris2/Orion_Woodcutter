@@ -473,7 +473,7 @@ public enum ChoppingLocation {
             {3118, 3209},
             {3101, 3219},
             {3102, 3235}
-    }), false, false, 12, -1, BankLocation.DRAYNOR, TreeType.NORMAL, TreeType.OAK),
+    }), false, false, 12, 30, BankLocation.DRAYNOR, TreeType.NORMAL, TreeType.OAK),
     W_DRAYNOR_VILLAGE_SOUTH_3(new Area(new int[][]{
             {3121, 3231},
             {3118, 3212},
@@ -481,7 +481,7 @@ public enum ChoppingLocation {
             {3134, 3202},
             {3142, 3211},
             {3134, 3225}
-    }), false, false, 12, -1, BankLocation.DRAYNOR, TreeType.NORMAL, TreeType.OAK),
+    }), false, false, 12, 30, BankLocation.DRAYNOR, TreeType.NORMAL, TreeType.OAK),
     W_LUMBRIDGE_WEST_1(new Area(new int[][]{
             {3136, 3259},
             {3157, 3260},
