@@ -20,6 +20,7 @@ import viking.framework.mule.MuleManagement;
 import viking.framework.mule.MuleOrder;
 import viking.framework.script.VikingScript;
 import viking.framework.task.TaskManager;
+import viking.framework.worker.Worker;
 
 
 public class OrionWoodcutter extends Mission implements CommandReceiver, ItemManagement, MuleManagement {
@@ -53,7 +54,8 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
 
     @Override
     public String getCurrentTaskName() {
-        return MANAGER.getCurrent().toString();
+        Worker<OrionWoodcutter> c = MANAGER.getCurrent();
+    	return c == null ? "Starting up..." : c.toString();
     }
 
     @Override
