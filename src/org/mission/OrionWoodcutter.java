@@ -53,7 +53,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
 
     @Override
     public String getCurrentTaskName() {
-        return TASK_MANAGER.getStatus();
+        return MANAGER.getCurrent().toString();
     }
 
     @Override
