@@ -22,6 +22,7 @@ public class OW_Vars {
 
     public ChoppingLocation chopping_location;
     public TreeType tree_type;
+    public boolean needsReactionTime;
 
 }
 

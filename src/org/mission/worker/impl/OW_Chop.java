@@ -1,6 +1,7 @@
 package org.mission.worker.impl;
 
 import org.mission.OrionWoodcutter;
+import org.mission.data.OW_Vars;
 import org.mission.worker.OWWorker;
 import org.osbot.rs07.api.filter.AreaFilter;
 import org.osbot.rs07.api.filter.Filter;
@@ -12,6 +13,7 @@ import org.osbot.rs07.api.model.RS2Object;
 import viking.api.Timing;
 import viking.api.filter.VFilters;
 import viking.api.skills.woodcutting.enums.TreeType;
+import viking.framework.antiban.reaction.ReactionEvents;
 
 public class OW_Chop extends OWWorker
 {
@@ -37,7 +39,17 @@ public class OW_Chop extends OWWorker
 		targetTree = objects.closest(filter); //get the tree we should be chopping
 		
 		if(myPlayer().isAnimating() && currentTree != null && currentTree.exists())
+		{
 			script.log(this, false, "Chopping...");
+			OW_Vars.get().needsReactionTime = true;
+		}
+		else if(OW_Vars.get().needsReactionTime)
+		{
+			int reactionTime = ReactionEvents.getReactionTime(currentTree.getName());
+			script.log(this, false, "Reaction time: " + reactionTime + "ms");
+			waitMs(reactionTime);
+			OW_Vars.get().needsReactionTime = false;
+		}
 		else if(targetTree != null && iFact.clickObject("Chop down", targetTree, getFallBackPos(targetTree)).execute())
 		{
 			script.log(this, false, "Successfully clicked tree");
