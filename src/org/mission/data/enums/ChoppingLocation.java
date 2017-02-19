@@ -617,16 +617,16 @@ public enum ChoppingLocation {
     public final boolean MEMBERS;
     public final boolean SHOULD_USE_DEPOSIT_BOX;
     public final int CAPACITY;
-    public final int MINIMUM_COMBAT_LEVEL;
+    public final int RECOMMENDED_COMBAT_LEVEL;
     public final TreeType[] TREE_TYPE;
 
-    ChoppingLocation(Area area, boolean members, boolean should_use_deposit_box, int capacity, int minimum_combat_level, BankLocation bank, TreeType... tree_type) {
+    ChoppingLocation(Area area, boolean members, boolean should_use_deposit_box, int capacity, int recommended_combat_level, BankLocation bank, TreeType... tree_type) {
     	BANK_AREA = bank.getArea();
     	this.AREA = area;
         this.MEMBERS = members;
         this.SHOULD_USE_DEPOSIT_BOX = should_use_deposit_box;
         this.CAPACITY = capacity;
-        this.MINIMUM_COMBAT_LEVEL = minimum_combat_level;
+        this.RECOMMENDED_COMBAT_LEVEL = recommended_combat_level;
         this.TREE_TYPE = tree_type;
         this.CENTER_AREA = getCenterArea();
     }
@@ -670,8 +670,8 @@ public enum ChoppingLocation {
         return CAPACITY;
     }
 
-    public int getMinimumCombatLevel() {
-        return MINIMUM_COMBAT_LEVEL;
+    public int getRecommendedCombatLevel() {
+        return RECOMMENDED_COMBAT_LEVEL;
     }
 
     public TreeType[] getTreeTypes() {
