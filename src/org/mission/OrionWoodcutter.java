@@ -114,7 +114,7 @@ public class OrionWoodcutter extends Mission implements CommandReceiver, ItemMan
     	if(currentTree == null)
     		return;
         script.log(this, false, "Updating chopping loc....");
-        currentLoc = ChoppingLocation.W_PORT_SARIM_NORTH_4;
+        currentLoc = ChoppingLocation.getAppropriate(currentTree, false, combat.getCombatLevel());
         //orion_main.receiveCommand("getLoc:wc:free:" + currentTree);
     }
 

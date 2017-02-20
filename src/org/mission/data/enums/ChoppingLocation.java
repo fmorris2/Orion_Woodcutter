@@ -1,7 +1,11 @@
 package org.mission.data.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.osbot.rs07.api.map.Area;
 import org.osbot.rs07.api.map.Position;
+import org.osbot.rs07.script.MethodProvider;
 
 import viking.api.banking.enums.BankLocation;
 import viking.api.skills.woodcutting.enums.TreeType;
@@ -684,5 +688,19 @@ public enum ChoppingLocation {
                 return true;
 
         return false;
+    }
+    
+    public static ChoppingLocation getAppropriate(TreeType t, boolean members, int combat)
+    {
+    	List<ChoppingLocation> potentials = new ArrayList<>();
+    	for(ChoppingLocation l : values())
+    	{
+    		if(!l.containsTreeType(t) || l.RECOMMENDED_COMBAT_LEVEL > combat || l.MEMBERS && !members)
+    			continue;
+    		
+    		potentials.add(l);
+    	}
+    	
+    	return potentials.get(MethodProvider.random(0, potentials.size() - 1));
     }
 }
